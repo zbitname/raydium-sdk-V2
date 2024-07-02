@@ -13,6 +13,8 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "jsx": "react",
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

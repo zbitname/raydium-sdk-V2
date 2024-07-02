@@ -5,5 +5,10 @@
   "githubPages": false,
   "hideGenerator": true,
   "out": "dist",
-  "preserveWatchOutput": true
+  "preserveWatchOutput": true,
+  "compilerOptions": {
+    "skipLibCheck": true,
+  },
+  "exclude": ["node_modules"],
+  "skipErrorChecking": true
 }

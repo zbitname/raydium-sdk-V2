@@ -73,15 +73,15 @@ export interface Structure<T = any, P = "", DecodeSchema extends { [key: string]
   layoutFor<AP extends string>(property: AP): Layout<DecodeSchema[AP]>;
   offsetOf<AP extends string>(property: AP): number;
 }
-interface StructureConstructor {
-  new <T = any, P = "", DecodeSchema extends { [key: string]: any } = any>(): Structure<T, P, DecodeSchema>;
-  new <T = any, P = "", DecodeSchema extends { [key: string]: any } = any>(
+interface StructureConstructor<L> extends _Structure<L> {
+  new <T = Layout<L[keyof L]>[], P = string, DecodeSchema extends { [key: string]: any } = any>(): Structure<T, P, DecodeSchema>;
+  new <T = Layout<L[keyof L]>[], P = string, DecodeSchema extends { [key: string]: any } = any>(
     fields: T,
     property?: P,
     decodePrefixes?: boolean,
   ): Structure<T, P, DecodeSchema>;
 }
-export const Structure = _Structure as unknown as StructureConstructor;
+export const Structure = <any>_Structure as StructureConstructor<any>;
 //#endregion
 
 //#region ------------------- Union -------------------
@@ -94,7 +94,7 @@ export interface Union<UnionSchema extends { [key: string]: any } = any> extends
     property?: string,
   ): any /* TEMP: code in Layout.js 1809 */;
 }
-interface UnionConstructor {
+interface UnionConstructor extends _Union {
   new <UnionSchema extends { [key: string]: any } = any>(): Union<UnionSchema>;
   new <UnionSchema extends { [key: string]: any } = any>(
     discr: Layout<any, any>,
@@ -102,7 +102,7 @@ interface UnionConstructor {
     property?: string,
   ): Union<UnionSchema>;
 }
-export const Union = _Union as unknown as UnionConstructor;
+export const Union = <any>_Union as UnionConstructor;
 //#endregion
 
 //#region ------------------- BitStructure -------------------

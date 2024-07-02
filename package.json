@@ -1,6 +1,6 @@
 {
   "name": "@raydium-io/raydium-sdk-v2",
-  "version": "0.1.32-alpha",
+  "version": "0.1.32-alpha.1",
   "description": "An SDK for building applications on top of Raydium.",
   "license": "GPL-3.0",
   "main": "./lib/index.js",
@@ -11,17 +11,13 @@
     "./src"
   ],
   "repository": "https://github.com/raydium-io/raydium-sdk-V2",
-  "publicConfig": {
-    "registry": "https://registry.yarnpkg.com",
-    "access": "public"
-  },
   "keywords": [
     "raydium",
     "solana"
   ],
   "lint-staged": {
     "{src,test,misc}/**/*.ts": [
-      "yarn lint"
+      "npm run lint"
     ]
   },
   "scripts": {
@@ -29,23 +25,24 @@
     "test": "jest",
     "build-docs": "typedoc",
     "build-docs-watch": "typedoc --watch",
-    "build-dist": "rm -rf dist && mkdir dist && yarn build-docs",
+    "build-dist": "rm -rf dist && mkdir dist && npm run build-docs",
     "build-lib": "rm -rf lib && tsup src --format cjs,esm --dts --sourcemap --no-splitting --minify -d lib --silent",
-    "build-all": "yarn build-dist && yarn build-lib",
-    "build": "yarn build-lib",
-    "push": "yarn build && yarn publish",
+    "build-all": "npm run build-dist && npm run build-lib",
+    "build": "npm run build-lib",
+    "push": "npm run build && npm run publish",
     "prepare": "husky install"
   },
   "resolutions": {
-    "@solana/spl-token": "^0.4.6",
-    "@solana/web3.js": "^1.91.8",
+    "@solana/spl-token": "^0.4.7",
+    "@solana/web3.js": "^1.94.0",
     "bn.js": "^5.2.1"
   },
   "dependencies": {
     "@project-serum/serum": "^0.13.65",
     "@solana/buffer-layout": "^4.0.1",
-    "@solana/spl-token": "^0.4.6",
-    "@solana/web3.js": "^1.91.8",
+    "@solana/spl-token": "^0.4.7",
+    "@solana/spl-token-group": "^0.0.4",
+    "@solana/web3.js": "^1.94.0",
     "axios": "^1.1.3",
     "big.js": "^6.2.1",
     "bn.js": "^5.2.1",
@@ -78,8 +75,7 @@
     "ts-jest-resolver": "^2.0.0",
     "ts-node": "^10.7.0",
     "tsup": "^5.12.8",
-    "typedoc": "^0.22.15",
-    "typescript": "^4.7.3",
-    "yarn": "^1.22.19"
+    "typedoc": "^0.26.3",
+    "typescript": "^4.9.5"
   }
 }
