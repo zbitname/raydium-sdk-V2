@@ -1,4 +1,5 @@
-import { get, set } from "lodash";
+import set from "lodash/set";
+import get from "lodash/get";
 
 export type ModuleName = "Common.Api";
 

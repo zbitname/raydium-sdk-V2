@@ -70,7 +70,7 @@ export default class CpmmModule extends ModuleBase {
 
     for (let i = 0; i < poolIds.length; i++) {
       const item = accounts[i];
-      if (item.accountInfo === null) throw Error("fetch pool info error: " + String(poolIds[i]));
+      if (!item.accountInfo) throw Error("fetch pool info error: " + String(poolIds[i]));
       const rpc = CpmmPoolInfoLayout.decode(item.accountInfo.data);
       poolInfos[String(poolIds[i])] = {
         ...rpc,
